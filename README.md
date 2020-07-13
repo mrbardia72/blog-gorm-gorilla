@@ -1,4 +1,4 @@
-# blog-gorm-gorilla
+# sample Blog using GORM and gorilla/mux
 # gorilla/mux
 
 Package `gorilla/mux` implements a request router and dispatcher for matching incoming requests to
