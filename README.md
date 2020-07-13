@@ -15,8 +15,6 @@ The name mux stands for "HTTP request multiplexer". Like the standard `http.Serv
 
 ## Install gorilla/mux
 
-With a [correctly configured](https://golang.org/doc/install#testing) Go toolchain:
-
 ```sh
 go get -u github.com/gorilla/mux
 ```
@@ -39,7 +37,7 @@ The fantastic ORM library for Golang, aims to be developer friendly.
 * Every feature comes with tests
 * Developer Friendly
 
-## Install
+## Install GORM
 ```sh
 go get -u github.com/jinzhu/gorm
 ```
