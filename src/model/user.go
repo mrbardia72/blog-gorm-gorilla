@@ -8,3 +8,6 @@ type User struct {
 	Email string
 	Posts []Post `gorm:"ForeignKey:UserID"`
 }
+type Errorx struct {
+    Info  string `json:"error"`
+}

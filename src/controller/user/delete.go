@@ -11,6 +11,7 @@ import (
 	"github.com/mrbardia72/blog-gorm-gorilla/src/config"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/helpers"
 )
+
 func Deleteuser(w http.ResponseWriter, r *http.Request) {
 
 	db := config.MySql()
@@ -22,8 +23,10 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	err := db.Where("name = ?", name).Find(&user).Error
 
 	if err != nil {
-
-		fmt.Fprintf(w, "not exisits record for delete")
+		var errorx model.Errorx
+		//errorx={info:"sssssss"}
+		json.NewEncoder(w).Encode(errorx)
+		// fmt.Fprintf(w, "not exisits record for delete")
 		info:=" not exisits record for delete "
 		helpers.GetTimeDate(info)
 		
