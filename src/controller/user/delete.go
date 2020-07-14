@@ -1,7 +1,7 @@
 package user
 
 import (
-	
+
 	"fmt"
 	"net/http"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -18,8 +18,14 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	name := vars["name"]
 
 	var user model.User
-	db.Where("name = ?", name).Find(&user)
+	err := db.Where("name = ?", name).Find(&user).Error
+
+	if err != nil {
+		fmt.Fprintf(w, "not exisits record for delete")
+		
+	} else {
 	db.Delete(&user)
+	}
 
 	info:=" Successfully Deleted User "
 	helpers.GetTimeDate(info)
