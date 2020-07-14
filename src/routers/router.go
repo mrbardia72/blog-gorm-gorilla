@@ -13,9 +13,9 @@ func HandleRequests() {
 	s := r.PathPrefix("/v1/api").Subrouter()
 
 	//routers user
-	s.HandleFunc("/users", user.Alluser).Methods("GET")	//v1/api/infouser/users
+	s.HandleFunc("/users", user.Alluser).Methods("GET")
 	s.HandleFunc("/user/{name}", controller.Deleteuser).Methods("DELETE")
-	s.HandleFunc("/user/{name}/{email}", controller.Updateuser).Methods("PUT")
+	s.HandleFunc("/user/{name}/{email}", user.Updateuser).Methods("PUT")
 	s.HandleFunc("/user/{name}/{email}", user.Newuser).Methods("POST")
 
 	//routers post
