@@ -1,4 +1,4 @@
-package muser
+package user
 
 
 import (
