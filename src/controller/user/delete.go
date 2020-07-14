@@ -21,13 +21,13 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	err := db.Where("name = ?", name).Find(&user).Error
 
 	if err != nil {
-
+		
 		fmt.Fprintf(w, "not exisits record for delete")
 		info:=" not exisits record for delete "
 		helpers.GetTimeDate(info)
 		
 	} else {
-		
+
 		db.Delete(&user)
 		info:=" Successfully Deleted User "
 		helpers.GetTimeDate(info)
