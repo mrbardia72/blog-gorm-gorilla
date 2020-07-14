@@ -4,6 +4,7 @@ import (
 
 	"fmt"
 	"net/http"
+	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/gorilla/mux"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/model"
@@ -20,9 +21,9 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	var user model.User
 	err := db.Where("name = ?", name).Find(&user).Error
 
-	if err != nil {
+	if gorm.IsRecordNotFoundError(err) {
 		fmt.Fprintf(w, "not exisits record for delete")
-		
+
 	} else {
 	db.Delete(&user)
 	}
