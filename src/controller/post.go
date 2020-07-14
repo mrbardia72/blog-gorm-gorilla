@@ -23,7 +23,7 @@ func Allpost(w http.ResponseWriter, r *http.Request) {
 	db.Find(&post)
 
 	info:="get all posts"
-	helpers.GetTimeDate(info)
+	helpers.LogApi(info)
 
 	json.NewEncoder(w).Encode(post)
 }

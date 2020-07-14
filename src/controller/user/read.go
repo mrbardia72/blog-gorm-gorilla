@@ -18,7 +18,7 @@ func Alluser(w http.ResponseWriter, r *http.Request) {
 	db.Preload("Posts").Find(&users) //once user multi posts 1:n
 	
 	info:="get all users"
-	helpers.GetTimeDate(info)
+	helpers.LogApi(info)
 
 	json.NewEncoder(w).Encode(users)
 }

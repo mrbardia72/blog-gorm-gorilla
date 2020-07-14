@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func GetTimeDate(info string)  {
+func LogApi(info string)  {
 
 	p := fmt.Println
 	now := time.Now()

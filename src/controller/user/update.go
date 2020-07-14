@@ -26,7 +26,7 @@ func Updateuser(w http.ResponseWriter, r *http.Request) {
 	db.Save(&user)
 
 	info:=" Successfully Updated User "
-	helpers.GetTimeDate(info)
+	helpers.LogApi(info)
 
 	fmt.Fprintf(w, "Successfully Updated User")
 }

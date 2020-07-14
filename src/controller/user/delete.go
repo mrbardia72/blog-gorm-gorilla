@@ -23,19 +23,17 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	err := db.Where("name = ?", name).Find(&user).Error
 
 	if err != nil {
-		var errorx model.Errorx
-		//errorx={info:"sssssss"}
+		errorx:=helpers.Errorx{Msgx:"not exisits record for delete",Codex:"404"}
 		json.NewEncoder(w).Encode(errorx)
-		// fmt.Fprintf(w, "not exisits record for delete")
 		info:=" not exisits record for delete "
-		helpers.GetTimeDate(info)
+		helpers.LogApi(info)
 		
 	} else {
 
 		db.Delete(&user)
 		info:=" Successfully Deleted User "
 		json.NewEncoder(w).Encode(info)
-		helpers.GetTimeDate(info)
+		helpers.LogApi(info)
 		fmt.Fprintf(w, "Successfully Deleted User")
 	}
 }

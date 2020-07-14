@@ -8,7 +8,7 @@ import (
 	"github.com/mrbardia72/blog-gorm-gorilla/src/model"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/config"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/helpers"
-)
+) 
 
 func Newuser(w http.ResponseWriter, r *http.Request) {
 
@@ -19,7 +19,7 @@ func Newuser(w http.ResponseWriter, r *http.Request) {
 	email := vars["email"]
 
 	info:=" New User Successfully Created "
-	helpers.GetTimeDate(info)
+	helpers.LogApi(info)
 
 	db.Create(&model.User{Name: name, Email: email})
 	json.NewEncoder(w).Encode(&model.User{Name: name, Email: email})
