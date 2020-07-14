@@ -7,4 +7,4 @@ git add .
 git commit -m "$namecommit"
 git remote add origin $url
 git pull --rebase origin master
-git push origin master
+git push origin master 

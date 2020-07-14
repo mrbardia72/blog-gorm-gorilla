@@ -6,7 +6,7 @@ import (
 	 "./src/model"
 	 "./src/routers"
 	 "./src/config"
-)
+) 
 
 func initialMigration() {
 
