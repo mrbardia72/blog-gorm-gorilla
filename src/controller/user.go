@@ -3,41 +3,28 @@ package controller
 import (
 	"fmt"
 	"net/http"
-	"encoding/json"
+	// "encoding/json"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/gorilla/mux"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/model"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/config"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/helpers"
 )
+ 
+// func Newuser(w http.ResponseWriter, r *http.Request) {
 
-func Alluser(w http.ResponseWriter, r *http.Request) {
+// 	db := config.MySql()
 
-	db := config.MySql()
+// 	vars := mux.Vars(r)
+// 	name := vars["name"]
+// 	email := vars["email"]
 
-	var users []model.User
+// 	info:=" New User Successfully Created "
+// 	helpers.GetTimeDate(info)
 
-	db.Preload("Posts").Find(&users) //once user multi posts 1:n
-	info:="get all users"
-	helpers.GetTimeDate(info)
-
-	json.NewEncoder(w).Encode(users)
-}
-
-func Newuser(w http.ResponseWriter, r *http.Request) {
-
-	db := config.MySql()
-
-	vars := mux.Vars(r)
-	name := vars["name"]
-	email := vars["email"]
-
-	info:=" New User Successfully Created "
-	helpers.GetTimeDate(info)
-
-	db.Create(&model.User{Name: name, Email: email})
-	json.NewEncoder(w).Encode(&model.User{Name: name, Email: email})
-}
+// 	db.Create(&model.User{Name: name, Email: email})
+// 	json.NewEncoder(w).Encode(&model.User{Name: name, Email: email})
+// }
 
 func Deleteuser(w http.ResponseWriter, r *http.Request) {
 

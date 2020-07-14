@@ -1,26 +1,26 @@
 package user
 
-
 import (
-	// "fmt"
 	"net/http"
 	"encoding/json"
+	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	// "github.com/gorilla/mux"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/model"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/config"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/helpers"
 )
 
-func Alluser(w http.ResponseWriter, r *http.Request) {
+func Newuser(w http.ResponseWriter, r *http.Request) {
 
 	db := config.MySql()
 
-	var users []model.User
+	vars := mux.Vars(r)
+	name := vars["name"]
+	email := vars["email"]
 
-	db.Preload("Posts").Find(&users) //once user multi posts 1:n
-	info:="get all users"
+	info:=" New User Successfully Created "
 	helpers.GetTimeDate(info)
 
-	json.NewEncoder(w).Encode(users)
+	db.Create(&model.User{Name: name, Email: email})
+	json.NewEncoder(w).Encode(&model.User{Name: name, Email: email})
 }
