@@ -4,7 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"../controller"
+	"github.com/mrbardia72/blog-gorm-gorilla/src/controller"
 )
 func HandleRequests() {
 
