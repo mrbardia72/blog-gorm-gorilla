@@ -14,7 +14,7 @@ func HandleRequests() {
 
 	//routers user
 	s.HandleFunc("/users", user.Alluser).Methods("GET")
-	s.HandleFunc("/user/{name}", controller.Deleteuser).Methods("DELETE")
+	s.HandleFunc("/user/{name}", user.Deleteuser).Methods("DELETE")
 	s.HandleFunc("/user/{name}/{email}", user.Updateuser).Methods("PUT")
 	s.HandleFunc("/user/{name}/{email}", user.Newuser).Methods("POST")
 
