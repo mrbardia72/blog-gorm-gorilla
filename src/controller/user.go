@@ -6,9 +6,9 @@ import (
 	"encoding/json"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/gorilla/mux"
-	"../model"
-	"../config"
-	"../helpers"
+	"github.com/mrbardia72/blog-gorm-gorilla/src/model"
+	"github.com/mrbardia72/blog-gorm-gorilla/src/config"
+	"github.com/mrbardia72/blog-gorm-gorilla/src/helpers"
 )
 
 func Alluser(w http.ResponseWriter, r *http.Request) {

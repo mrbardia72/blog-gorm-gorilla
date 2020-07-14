@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	 _ "github.com/jinzhu/gorm/dialects/mysql"
-	 "./src/model"
-	 "./src/routers"
-	 "./src/config"
+	 "github.com/mrbardia72/blog-gorm-gorilla/src/model"
+	 "github.com/mrbardia72/blog-gorm-gorilla/src/routers"
+	 "github.com/mrbardia72/blog-gorm-gorilla/src/config"
 ) 
 
 func initialMigration() {
