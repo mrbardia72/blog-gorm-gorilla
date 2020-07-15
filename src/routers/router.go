@@ -4,7 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
-	"github.com/mrbardia72/blog-gorm-gorilla/src/controller"
+	"github.com/mrbardia72/blog-gorm-gorilla/src/controller/post"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/controller/user"
 )
 
@@ -20,7 +20,10 @@ func HandleRequests() {
 	userroute.HandleFunc("/search/{name}", user.Searchuser).Methods("GET")
 
 	postroute := route.PathPrefix("/v1/api/u.er").Subrouter()
-	postroute.HandleFunc("/posts", controller.Allpost).Methods("GET")
-
+	postroute.HandleFunc("/posts", post.Allpost).Methods("GET")
+	postroute.HandleFunc("/delete/{name}", post.Deletepost).Methods("DELETE")
+	postroute.HandleFunc("/update/{name}/{email}", post.Updatepost).Methods("PUT")
+	postroute.HandleFunc("/create/{name}/{email}", post.Newpost).Methods("POST")
+	postroute.HandleFunc("/search/{name}", post.Searchpost).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8081", route))
 }
