@@ -20,5 +20,4 @@ func LogApi(info string)  {
 	p("Weekday", now.Weekday())
 	p(info);
 	p("---------------------")
-
 }
