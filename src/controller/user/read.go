@@ -14,7 +14,6 @@ func Alluser(w http.ResponseWriter, r *http.Request) {
 	db := config.MySql()
 
 	var users []model.User
-
 	db.Preload("Posts").Find(&users) //once user multi posts 1:n
 	
 	info:="get all users"

@@ -1,8 +1,6 @@
 package user
 
 import (
-
-	"fmt"
 	"net/http"
 	"encoding/json"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -11,7 +9,7 @@ import (
 	"github.com/mrbardia72/blog-gorm-gorilla/src/config"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/helpers"
 )
-
+ 
 func Deleteuser(w http.ResponseWriter, r *http.Request) {
 
 	db := config.MySql()
@@ -23,6 +21,7 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	err := db.Where("name = ?", name).Find(&user).Error
 
 	if err != nil {
+		
 		errorx:=helpers.Errorx{Msgx:"not exisits record for delete",Codex:"404"}
 		json.NewEncoder(w).Encode(errorx)
 		info:=" not exisits record for delete "
@@ -31,9 +30,9 @@ func Deleteuser(w http.ResponseWriter, r *http.Request) {
 	} else {
 
 		db.Delete(&user)
+		errorx:=helpers.Errorx{Msgx:"Successfully Deleted User",Codex:"200"}
+		json.NewEncoder(w).Encode(errorx)
 		info:=" Successfully Deleted User "
-		json.NewEncoder(w).Encode(info)
 		helpers.LogApi(info)
-		fmt.Fprintf(w, "Successfully Deleted User")
 	}
 }

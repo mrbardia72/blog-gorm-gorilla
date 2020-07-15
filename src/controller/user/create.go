@@ -13,7 +13,7 @@ import (
 func Newuser(w http.ResponseWriter, r *http.Request) {
 
 	db := config.MySql()
-
+ 
 	vars := mux.Vars(r)
 	name := vars["name"]
 	email := vars["email"]

@@ -1,7 +1,7 @@
 package user
 
 import (
-	"fmt"
+	"encoding/json"
 	"net/http"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/gorilla/mux"
@@ -19,14 +19,22 @@ func Updateuser(w http.ResponseWriter, r *http.Request) {
 	email := vars["email"]
 
 	var user model.User
-	db.Where("name = ?", name).Find(&user)
+	err := db.Where("name = ?", name).Find(&user).Error
 
-	user.Email = email
+	if err != nil {
+		
+		errorx:=helpers.Errorx{Msgx:"not exisits record for update",Codex:"404"}
+		json.NewEncoder(w).Encode(errorx)
+		info:=" not exisits record for update "
+		helpers.LogApi(info)
+		
+	} else {
 
-	db.Save(&user)
-
-	info:=" Successfully Updated User "
-	helpers.LogApi(info)
-
-	fmt.Fprintf(w, "Successfully Updated User")
+		user.Email = email
+		db.Save(&user)
+		errorx:=helpers.Errorx{Msgx:"Successfully update User",Codex:"200"}
+		json.NewEncoder(w).Encode(errorx)
+		info:=" Successfully update User "
+		helpers.LogApi(info)
+	}
 }
