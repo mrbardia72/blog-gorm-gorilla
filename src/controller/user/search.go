@@ -26,12 +26,12 @@ func Searchuser(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(errorx)
 		info:="There is no such record"
 		helpers.LogApi(info)
-		
+		 
 	} else { 
 		
-		db.Find(&user)
+		db.Preload("Posts").Find(&user)
 		json.NewEncoder(w).Encode(&user)
-		info:=" Successfully update User "
+		info:=" Successfully search User "
 		helpers.LogApi(info)
 	}
 }
