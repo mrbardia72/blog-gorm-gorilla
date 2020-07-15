@@ -7,21 +7,20 @@ import (
 	"github.com/mrbardia72/blog-gorm-gorilla/src/controller"
 	"github.com/mrbardia72/blog-gorm-gorilla/src/controller/user"
 )
+
 func HandleRequests() {
 
-	r := mux.NewRouter()
-	s := r.PathPrefix("/v1/api").Subrouter()
+	route := mux.NewRouter()
 
-	//routers user
-	s.HandleFunc("/users", user.Alluser).Methods("GET")
-	s.HandleFunc("/user/{name}", user.Deleteuser).Methods("DELETE")
-	s.HandleFunc("/user/{name}/{email}", user.Updateuser).Methods("PUT")
-	s.HandleFunc("/user/{name}/{email}", user.Newuser).Methods("POST")
-	
-	s.HandleFunc("/search/{name}", user.Searchuser).Methods("GET")
+	userroute := route.PathPrefix("/v1/api/u.er").Subrouter()
+	userroute.HandleFunc("/read", user.Alluser).Methods("GET")
+	userroute.HandleFunc("/delete/{name}", user.Deleteuser).Methods("DELETE")
+	userroute.HandleFunc("/update/{name}/{email}", user.Updateuser).Methods("PUT")
+	userroute.HandleFunc("/create/{name}/{email}", user.Newuser).Methods("POST")
+	userroute.HandleFunc("/search/{name}", user.Searchuser).Methods("GET")
 
-	//routers post
-	s.HandleFunc("/posts", controller.Allpost).Methods("GET")	//v1/api/infopost/posts
+	postroute := route.PathPrefix("/v1/api/u.er").Subrouter()
+	postroute.HandleFunc("/posts", controller.Allpost).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(":8081", r))
+	log.Fatal(http.ListenAndServe(":8081", route))
 }
