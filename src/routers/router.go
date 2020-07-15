@@ -17,6 +17,8 @@ func HandleRequests() {
 	s.HandleFunc("/user/{name}", user.Deleteuser).Methods("DELETE")
 	s.HandleFunc("/user/{name}/{email}", user.Updateuser).Methods("PUT")
 	s.HandleFunc("/user/{name}/{email}", user.Newuser).Methods("POST")
+	
+	s.HandleFunc("/search/{name}", user.Searchuser).Methods("GET")
 
 	//routers post
 	s.HandleFunc("/posts", controller.Allpost).Methods("GET")	//v1/api/infopost/posts
