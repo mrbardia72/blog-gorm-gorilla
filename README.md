@@ -43,4 +43,4 @@ go get -u github.com/jinzhu/gorm
 ```
 
 ## insomnia test
- import file Insomnia_2020-07-15.json in insomnia for test rest
+ import file Insomnia_2020-07-15.json in insomnia for test rest 
